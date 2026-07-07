@@ -115,8 +115,6 @@ export default function ServiceRail({
 
         <ul
           ref={trackRef}
-          role="group"
-          aria-roledescription="קרוסלה"
           aria-label="השירותים שלנו"
           className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
@@ -154,7 +152,7 @@ export default function ServiceRail({
 
         {/* Dots — reflect snap position */}
         {overflow && (
-          <div className="flex justify-center gap-2 mt-6" role="tablist" aria-label="ניווט בין השירותים">
+          <div className="flex justify-center gap-1 mt-4">
             {services.map((s, i) => (
               <button
                 key={s.slug}
@@ -162,10 +160,17 @@ export default function ServiceRail({
                 onClick={() => goTo(i)}
                 aria-label={`מעבר לשירות ${i + 1}`}
                 aria-current={i === active}
-                className={`h-2.5 rounded-full transition-all ${
-                  i === active ? "w-6 bg-sage-600" : "w-2.5 bg-sage-600/30 hover:bg-sage-600/50"
-                }`}
-              />
+                className="group/dot p-2.5 flex items-center justify-center"
+              >
+                <span
+                  className={`block h-2.5 rounded-full transition-all ${
+                    i === active
+                      ? "w-6 bg-sage-600"
+                      : "w-2.5 bg-sage-600/30 group-hover/dot:bg-sage-600/50"
+                  }`}
+                  aria-hidden="true"
+                />
+              </button>
             ))}
           </div>
         )}

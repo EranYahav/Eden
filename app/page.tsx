@@ -94,7 +94,7 @@ export default async function HomePage() {
         <section className="bg-forest-900 py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <p className="section-label justify-center !text-terracotta-500">
+              <p className="section-label justify-center !text-terracotta-100">
                 המלצות
               </p>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
@@ -180,7 +180,7 @@ export default async function HomePage() {
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3 leading-tight">
             מוכנים לעשות את הצעד הראשון?
           </h2>
-          <p className="text-white/80 mb-8 leading-relaxed max-w-lg mx-auto">
+          <p className="text-white/90 mb-8 leading-relaxed max-w-lg mx-auto">
             שיחה קצרה, בלי התחייבות. נבין מה מטריד אתכם ונראה יחד איך אפשר
             לעזור.
           </p>

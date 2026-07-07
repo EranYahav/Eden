@@ -36,7 +36,7 @@ export default function ContactPage() {
             <MessageCircle className="w-7 h-7 flex-shrink-0" />
             <div>
               <p className="font-extrabold">וואטסאפ</p>
-              <p className="text-white/80 text-sm">הדרך המהירה ביותר להתחיל</p>
+              <p className="text-white/90 text-sm">הדרך המהירה ביותר להתחיל</p>
             </div>
           </a>
 
