@@ -36,6 +36,7 @@ export interface TeamMember {
   role: string;
   coachKey: CoachKey;
   photo?: string;
+  tagline?: string;
   credentials?: string[];
   order: number;
   content: string;

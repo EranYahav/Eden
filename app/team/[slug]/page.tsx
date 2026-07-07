@@ -46,6 +46,9 @@ export default async function TeamPage({ params }: PageProps) {
     service: member.coachKey === "eden" ? "finance" : "couples",
   });
 
+  // The other coach — cross-linked at the bottom of the bio.
+  const other = getTeam().find((m) => m.slug !== slug);
+
   const crumbs = breadcrumbLd([
     { name: "בית", path: "/" },
     { name: member.name, path: `/team/${slug}` },
@@ -100,6 +103,45 @@ export default async function TeamPage({ params }: PageProps) {
       </div>
 
       <div className="prose-rtl max-w-prose mb-10">{body}</div>
+
+      {/* Meet the other coach */}
+      {other && (
+        <div className="mb-10">
+          <p className="section-label">הכירו גם את</p>
+          <Link
+            href={`/team/${other.slug}`}
+            className="group flex items-center gap-4 bg-white rounded-[20px] border border-sand shadow-soft hover:shadow-lift transition-all p-5"
+          >
+            {other.photo ? (
+              <span className="relative w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 bg-sage-100">
+                <Image
+                  src={other.photo}
+                  alt={other.name}
+                  fill
+                  sizes="80px"
+                  className="object-cover"
+                />
+              </span>
+            ) : (
+              <span className="w-20 h-20 rounded-2xl bg-sage-100 text-sage-700 flex items-center justify-center text-3xl font-extrabold flex-shrink-0">
+                {other.name.charAt(0)}
+              </span>
+            )}
+            <div>
+              <h2 className="font-extrabold text-forest-900 group-hover:text-sage-700 transition-colors">
+                {other.name}
+              </h2>
+              <p className="text-ink-soft text-sm leading-snug">{other.role}</p>
+              {other.tagline && (
+                <p className="mt-1.5 text-sage-700 text-sm font-medium leading-snug">
+                  {other.tagline}
+                </p>
+              )}
+            </div>
+            <ChevronLeft className="w-5 h-5 text-sage-600 mr-auto group-hover:-translate-x-1 transition-transform" />
+          </Link>
+        </div>
+      )}
 
       <div className="bg-sage-100 rounded-[20px] p-8 text-center">
         <p className="text-forest-900 font-semibold mb-5">
