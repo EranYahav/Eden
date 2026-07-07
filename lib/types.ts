@@ -9,6 +9,7 @@ export interface Service {
   slug: string;
   title: string;
   tagline: string;
+  summary?: string; // expanded blurb for the services overview page
   metaTitle?: string;
   metaDescription?: string;
   icon: "heart" | "sprout" | "coins" | "compass";
