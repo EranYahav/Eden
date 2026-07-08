@@ -15,5 +15,6 @@ export default function ServiceIcon({
   className?: string;
 }) {
   const Icon = MAP[name] ?? Compass;
-  return <Icon className={className} aria-hidden="true" />;
+  // Thin 1.5 stroke — part of the KAV icon language.
+  return <Icon className={className} strokeWidth={1.5} aria-hidden="true" />;
 }

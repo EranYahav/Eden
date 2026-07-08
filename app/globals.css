@@ -3,28 +3,35 @@
 @tailwind utilities;
 
 :root {
-  --cream-50: #faf6ef;
-  --sand-100: #f1e9dc;
-  --sage-600: #556b5a;
-  --sage-700: #3e4f44;
-  --sage-100: #e7ede7;
-  --terracotta-500: #c67b54;
-  --terracotta-100: #f3e1d6;
-  --forest-900: #1e3a31;
-  --ink: #2b2b2b;
-  --ink-soft: #55524c;
+  --parchment: #fbf5ec;
+  --veil: #f4eae0;
+  --line: #eadfd4;
+  --ink: #241b26;
+  --mauve: #6b5b6e;
+  --abyss-950: #0f0a16;
+  --abyss-900: #1a1122;
+  --abyss-800: #2a1b36;
+  --ember-700: #a93a26;
+  --ember-600: #d94e33;
+  --ember-500: #f26648;
+  --ember-300: #f5a98c;
+  --ember-100: #fadfd2;
+  --ember-50: #fdf0ea;
+  --champagne-600: #a87c3e;
+  --champagne-400: #e3b978;
+  --champagne-100: #f7e8cf;
 }
 
 @layer base {
   html {
-    font-family: var(--font-assistant), system-ui, sans-serif;
+    font-family: var(--font-heebo), system-ui, sans-serif;
     scroll-behavior: smooth;
   }
 
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: var(--cream-50);
+    background-color: var(--parchment);
     color: var(--ink);
   }
 
@@ -35,8 +42,21 @@
     line-height: 1.7;
   }
 
+  /* Slab display face for primary headings. Suez One ships a single 400
+     weight — heading weight utilities are intentionally not used with it. */
+  h1,
+  h2 {
+    font-family: var(--font-suez), var(--font-heebo), serif;
+    font-weight: 400;
+  }
+
+  ::selection {
+    background: var(--champagne-100);
+    color: var(--abyss-900);
+  }
+
   :focus-visible {
-    outline: 3px solid var(--sage-600);
+    outline: 3px solid var(--ember-500);
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -45,63 +65,518 @@
 @layer components {
   /* RTL prose for MDX-rendered content */
   .prose-rtl h2 {
-    @apply text-2xl sm:text-3xl font-extrabold text-forest-900 mt-10 mb-3 leading-tight;
+    @apply text-2xl sm:text-3xl text-ink mt-10 mb-3 leading-tight;
   }
 
   .prose-rtl h3 {
-    @apply text-xl font-bold text-forest-900 mt-7 mb-2;
+    @apply text-xl font-bold text-ink mt-7 mb-2;
   }
 
   .prose-rtl p {
-    @apply text-ink-soft leading-relaxed mb-5;
+    @apply text-mauve leading-relaxed mb-5;
   }
 
   .prose-rtl ul {
-    @apply list-disc pr-6 space-y-2 mb-5 text-ink-soft;
+    @apply list-disc pr-6 space-y-2 mb-5 text-mauve marker:text-ember-500;
   }
 
   .prose-rtl ol {
-    @apply list-decimal pr-6 space-y-2 mb-5 text-ink-soft;
+    @apply list-decimal pr-6 space-y-2 mb-5 text-mauve marker:text-ember-500;
   }
 
   .prose-rtl strong {
-    @apply font-bold text-forest-900;
+    @apply font-bold text-ink;
   }
 
   .prose-rtl a {
-    @apply text-sage-700 underline underline-offset-2 hover:text-sage-600;
+    @apply text-ember-600 underline underline-offset-2 hover:text-ember-700;
   }
 
-  /* Editorial section label */
-  .section-label {
-    @apply inline-flex items-center gap-2 text-sage-600 text-xs font-bold uppercase tracking-[0.15em] mb-3;
+  /* Inverted prose for dark scenes */
+  .prose-invert-warm h2 {
+    @apply text-2xl sm:text-3xl text-white mt-10 mb-3 leading-tight;
   }
 
-  .section-label::before {
+  .prose-invert-warm h3 {
+    @apply text-xl font-bold text-white mt-7 mb-2;
+  }
+
+  .prose-invert-warm p {
+    @apply text-white/75 leading-relaxed mb-5;
+  }
+
+  .prose-invert-warm ul,
+  .prose-invert-warm ol {
+    @apply pr-6 space-y-2 mb-5 text-white/75 marker:text-champagne-400;
+  }
+
+  .prose-invert-warm ul {
+    @apply list-disc;
+  }
+
+  .prose-invert-warm strong {
+    @apply font-bold text-champagne-100;
+  }
+
+  .prose-invert-warm a {
+    @apply text-champagne-400 underline underline-offset-2 hover:text-champagne-100;
+  }
+
+  /* Editorial eyebrow label — hairline dash + tracked text */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[13px] font-bold tracking-[0.18em] text-ember-700 mb-4;
+  }
+
+  .eyebrow::before {
     content: "";
-    @apply block w-5 h-0.5 bg-terracotta-500;
+    @apply block w-8 h-px bg-ember-700;
   }
 
-  /* Primary CTA */
+  .eyebrow-light {
+    @apply !text-champagne-400;
+  }
+
+  .eyebrow-light::before {
+    @apply bg-champagne-400;
+  }
+
+  /* Buttons — living fire: breathing halo + periodic shine sweep */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 bg-sage-600 hover:bg-sage-700 text-white font-bold px-7 py-3.5 rounded-[14px] transition-all shadow-soft hover:shadow-lift;
+    @apply relative overflow-hidden inline-flex items-center justify-center gap-2 text-white font-bold px-7 py-3.5 rounded-[10px];
+    background-image: linear-gradient(135deg, var(--ember-500), var(--ember-600));
+    transition:
+      filter 0.2s ease,
+      box-shadow 0.35s ease;
   }
 
-  .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 border border-sage-600/30 hover:border-sage-600 text-sage-700 font-semibold px-7 py-3.5 rounded-[14px] transition-all;
+  .btn-primary::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.35) 50%,
+      transparent 60%
+    );
+    transform: translateX(-170%);
   }
 
-  /* Scroll reveal (JS toggles .is-visible) */
+  .btn-primary:hover {
+    filter: brightness(1.08);
+    box-shadow: 0 0 52px rgba(242, 102, 72, 0.55);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .btn-primary {
+      animation: breathe 3.8s ease-in-out infinite;
+    }
+    .btn-primary::after {
+      animation: shine 5s ease-in-out infinite;
+    }
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-ink/20 hover:border-ink/60 text-ink font-semibold px-7 py-3.5 rounded-[10px] transition-colors duration-200;
+  }
+
+  .btn-outline-light {
+    @apply inline-flex items-center justify-center gap-2 border border-white/25 hover:border-champagne-400 text-white font-semibold px-7 py-3.5 rounded-[10px] transition-colors duration-200;
+  }
+
+  /* Flat card — hairline border; depth appears only on interaction */
+  .card {
+    @apply bg-white border border-line rounded-[18px];
+  }
+
+  .card-hover {
+    @apply transition-all duration-200 hover:border-ember-300 hover:shadow-pop hover:-translate-y-0.5;
+  }
+
+  /* ── The journey: night → sunrise scene gradients ─────────────── */
+  .scene-night {
+    background: linear-gradient(180deg, #0c0812 0%, #160e1e 55%, #1a1122 100%);
+  }
+
+  .scene-dusk {
+    background: linear-gradient(180deg, #1a1122, #331a35);
+  }
+
+  .scene-journey {
+    background: linear-gradient(180deg, #331a35 0%, #57223a 45%, #8c3a31 100%);
+  }
+
+  .scene-copper {
+    background: linear-gradient(180deg, #8c3a31, #a8502f);
+  }
+
+  /* Headings live in the dark upper zone; light only arrives at the floor */
+  .scene-dawn {
+    background: linear-gradient(180deg, #a8502f 0%, #c2703f 55%, #edbe8a 100%);
+  }
+
+  .scene-day {
+    background: linear-gradient(180deg, #edbe8a, #fbf5ec 40%);
+  }
+
+  /* Warm ambient light field for dark scenes */
+  .aurora {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .aurora::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    pointer-events: none;
+    background:
+      radial-gradient(38% 45% at 72% 18%, rgba(242, 102, 72, 0.22), transparent 70%),
+      radial-gradient(28% 38% at 18% 82%, rgba(227, 185, 120, 0.14), transparent 70%),
+      radial-gradient(46% 56% at 42% 50%, rgba(140, 58, 49, 0.28), transparent 70%);
+    filter: blur(40px);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .aurora::before {
+      animation: aurora-drift 45s ease-in-out infinite alternate;
+    }
+  }
+
+  /* Starfield — tiny twinkling points for the night scene */
+  .starfield::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(1.5px 1.5px at 12% 22%, rgba(255, 255, 255, 0.9), transparent 100%),
+      radial-gradient(1px 1px at 32% 12%, rgba(255, 255, 255, 0.7), transparent 100%),
+      radial-gradient(1.5px 1.5px at 55% 30%, rgba(247, 232, 207, 0.8), transparent 100%),
+      radial-gradient(1px 1px at 71% 8%, rgba(255, 255, 255, 0.65), transparent 100%),
+      radial-gradient(2px 2px at 84% 24%, rgba(247, 232, 207, 0.7), transparent 100%),
+      radial-gradient(1px 1px at 45% 45%, rgba(255, 255, 255, 0.5), transparent 100%),
+      radial-gradient(1.5px 1.5px at 22% 55%, rgba(255, 255, 255, 0.45), transparent 100%),
+      radial-gradient(1px 1px at 92% 48%, rgba(255, 255, 255, 0.55), transparent 100%);
+    background-repeat: repeat;
+    background-size: 640px 640px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .starfield::before {
+      animation: twinkle 5.5s ease-in-out infinite alternate;
+    }
+  }
+
+  /* Ember horizon glow — the fire line at the bottom of the night */
+  .horizon::after {
+    content: "";
+    position: absolute;
+    inset-inline: -20%;
+    bottom: -14%;
+    height: 55%;
+    pointer-events: none;
+    background: radial-gradient(
+      55% 90% at 50% 100%,
+      rgba(242, 102, 72, 0.5),
+      rgba(140, 58, 49, 0.25) 45%,
+      transparent 75%
+    );
+    filter: blur(28px);
+  }
+
+  /* Metallic champagne type — for monumental numerals & highlights */
+  .text-champagne-metal {
+    background-image: linear-gradient(
+      105deg,
+      #e3b978,
+      #a87c3e 35%,
+      #f7e8cf 55%,
+      #c99a55 75%,
+      #e3b978
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Fire gradient type — deep enough to stay legible on light scenes */
+  .text-fire {
+    background-image: linear-gradient(
+      100deg,
+      var(--ember-700),
+      var(--ember-500) 50%,
+      var(--champagne-600)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Film grain — breaks digital flatness on dark scenes */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Kinetic headline — words rise from blur, staggered via inline delay */
+  .hero-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.5em);
+    filter: blur(10px);
+    animation: word-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  /* Outlined display type — oversized decorative typography */
+  .text-outline-light {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(247, 232, 207, 0.35);
+  }
+
+  /* Infinite marquee — brand ticker */
+  .marquee {
+    overflow: hidden;
+    display: flex;
+  }
+
+  .marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 3.5rem;
+    padding-inline-start: 3.5rem;
+    width: max-content;
+    flex-shrink: 0;
+    animation: marquee 36s linear infinite;
+  }
+
+  /* Cursor spotlight — JS feeds --mx/--my; warm glow trails the pointer */
+  .spotlight {
+    position: relative;
+  }
+
+  .spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+    background: radial-gradient(
+      420px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(227, 185, 120, 0.18),
+      transparent 65%
+    );
+  }
+
+  .spotlight:hover::before {
+    opacity: 1;
+  }
+
+  /* Glass panel for lit scenes */
+  .glass-warm {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-[18px];
+  }
+
+  /* Shooting star — rare, elegant, crosses the night sky */
+  .meteor {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 9999px;
+    background: #fff;
+    box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.6);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .meteor::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 130px;
+    height: 1.5px;
+    transform: translateY(-50%);
+    background: linear-gradient(270deg, rgba(255, 255, 255, 0.65), transparent);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .meteor {
+      animation: meteor 13s linear infinite;
+    }
+  }
+
+  /* Embers drifting up from the horizon fire */
+  .ember-p {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 9999px;
+    background: radial-gradient(circle, #f7c9a8, #f26648);
+    opacity: 0;
+    filter: blur(0.5px);
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .ember-p {
+      animation: ember-rise 11s ease-out infinite;
+    }
+  }
+
+  /* Scroll cue at the hero floor */
+  .scroll-cue {
+    width: 26px;
+    height: 42px;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 13px;
+    position: relative;
+  }
+
+  .scroll-cue::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 3px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--champagne-400);
+    animation: cue-drop 1.8s ease-in-out infinite;
+  }
+
+  /* Fine blueprint grid overlay */
+  .grid-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  /* Scroll reveal (JS toggles .is-visible) — short, precise easing */
   .reveal {
     opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    transform: translateY(20px);
+    transition:
+      opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: opacity, transform;
   }
 
   .reveal.is-visible {
     opacity: 1;
     transform: none;
+  }
+}
+
+@keyframes aurora-drift {
+  from {
+    transform: translate3d(-4%, -2%, 0) rotate(0deg);
+  }
+  to {
+    transform: translate3d(4%, 3%, 0) rotate(6deg);
+  }
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes word-rise {
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    box-shadow: 0 0 16px rgba(242, 102, 72, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 42px rgba(242, 102, 72, 0.5);
+  }
+}
+
+@keyframes shine {
+  0%,
+  62% {
+    transform: translateX(-170%);
+  }
+  86%,
+  100% {
+    transform: translateX(170%);
+  }
+}
+
+@keyframes meteor {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(-35deg);
+  }
+  2% {
+    opacity: 1;
+  }
+  9% {
+    opacity: 0;
+    transform: translate3d(-360px, 252px, 0) rotate(-35deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(-360px, 252px, 0) rotate(-35deg);
+  }
+}
+
+@keyframes ember-rise {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  12% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(26px, -46vh, 0);
+  }
+}
+
+@keyframes cue-drop {
+  0% {
+    opacity: 0;
+    transform: translateX(50%) translateY(0);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(50%) translateY(14px);
   }
 }
 
@@ -113,5 +588,20 @@
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+  .hero-word {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  .marquee-track,
+  .starfield::before,
+  .scroll-cue::after,
+  .meteor,
+  .ember-p,
+  .btn-primary,
+  .btn-primary::after {
+    animation: none !important;
   }
 }

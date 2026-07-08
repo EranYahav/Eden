@@ -16,31 +16,44 @@ export default function OG() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(180deg, #F1E9DC 0%, #FAF6EF 100%)",
+          backgroundColor: "#0F0A16",
+          backgroundImage:
+            "radial-gradient(circle at 50% 110%, rgba(242,102,72,.5), transparent 55%), radial-gradient(circle at 80% 10%, rgba(227,185,120,.25), transparent 50%)",
           fontFamily: "sans-serif",
         }}
       >
-        <svg viewBox="0 0 520 300" width="360" height="210">
-          <path d="M60 150 Q260 30 460 150 Q360 115 260 150 Q160 115 60 150 Z" fill="#556B5A" />
-          <path d="M260 150 Q360 115 460 150 Q425 128 390 118 Q310 92 260 150 Z" fill="#C67B54" />
-          <rect x="256" y="148" width="8" height="110" rx="4" fill="#1E3A31" />
-          <circle cx="230" cy="205" r="18" fill="#1E3A31" />
-          <path d="M206 285 q0 -50 24 -50 q24 0 24 50 Z" fill="#1E3A31" />
-          <circle cx="290" cy="210" r="15" fill="#3E4F44" />
-          <path d="M272 285 q0 -42 18 -42 q18 0 18 42 Z" fill="#3E4F44" />
+        <svg viewBox="0 0 200 160" width="280" height="224">
+          <path
+            d="M20 90 A80 80 0 0 1 180 90"
+            fill="none"
+            stroke="#E3B978"
+            strokeWidth="10"
+            strokeLinecap="round"
+          />
+          <rect x="48" y="104" width="16" height="40" rx="4" fill="#F5A98C" />
+          <rect x="80" y="92" width="16" height="52" rx="4" fill="#F26648" />
+          <rect x="112" y="80" width="16" height="64" rx="4" fill="#D94E33" />
+          <rect x="144" y="68" width="16" height="76" rx="4" fill="#FFFFFF" />
         </svg>
         <div
           style={{
-            fontSize: 68,
+            fontSize: 72,
             fontWeight: 800,
-            color: "#1E3A31",
-            marginTop: 20,
+            color: "#FFFFFF",
+            marginTop: 28,
             direction: "rtl",
           }}
         >
           {SITE.name}
         </div>
-        <div style={{ fontSize: 36, color: "#55524C", marginTop: 8, direction: "rtl" }}>
+        <div
+          style={{
+            fontSize: 34,
+            color: "rgba(255,255,255,.7)",
+            marginTop: 10,
+            direction: "rtl",
+          }}
+        >
           {SITE.tagline}
         </div>
       </div>

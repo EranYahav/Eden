@@ -8,10 +8,13 @@ export default function ScrollReveal({
   children,
   className = "",
   as = "div",
+  delay = 0,
 }: {
   children: React.ReactNode;
   className?: string;
   as?: keyof React.JSX.IntrinsicElements;
+  /** Stagger offset in ms, applied to the reveal transition. */
+  delay?: number;
 }) {
   const ref = useRef<HTMLElement | null>(null);
   const [visible, setVisible] = useState(false);
@@ -39,6 +42,7 @@ export default function ScrollReveal({
     {
       ref,
       className: `reveal ${visible ? "is-visible" : ""} ${className}`,
+      style: delay ? { transitionDelay: `${delay}ms` } : undefined,
     },
     children,
   );

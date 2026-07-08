@@ -8,35 +8,50 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        assistant: ["var(--font-assistant)", "sans-serif"],
+        sans: ["var(--font-heebo)", "sans-serif"],
+        display: ["var(--font-suez)", "var(--font-heebo)", "serif"],
       },
       colors: {
-        // "Family Umbrella" system — calm / warm / trust
-        cream: "#FAF6EF",
-        sand: "#F1E9DC",
-        sage: {
-          100: "#E7EDE7",
-          600: "#556B5A",
-          700: "#3E4F44",
+        // "מלילה לזריחה" — night-to-sunrise luxury system.
+        // Deep plum darkness, ember fire, champagne metal, parchment daylight.
+        abyss: {
+          800: "#2A1B36",
+          900: "#1A1122",
+          950: "#0F0A16",
         },
-        terracotta: {
-          100: "#F3E1D6",
-          500: "#C67B54",
+        ember: {
+          50: "#FDF0EA",
+          100: "#FADFD2",
+          300: "#F5A98C",
+          500: "#F26648",
+          600: "#D94E33",
+          700: "#A93A26",
         },
-        forest: {
-          900: "#1E3A31",
+        champagne: {
+          100: "#F7E8CF",
+          400: "#E3B978",
+          600: "#A87C3E",
         },
-        ink: {
-          DEFAULT: "#2B2B2B",
-          soft: "#55524C",
-        },
+        parchment: "#FBF5EC",
+        veil: "#F4EAE0",
+        line: "#EADFD4",
+        ink: "#241B26",
+        mauve: "#6B5B6E",
       },
       boxShadow: {
-        soft: "0 8px 24px rgba(30,40,35,.06)",
-        lift: "0 12px 32px rgba(30,40,35,.10)",
+        pop: "0 24px 48px -24px rgba(15,10,22,.35)",
       },
       maxWidth: {
         prose: "72ch",
+      },
+      keyframes: {
+        "aurora-drift": {
+          from: { transform: "translate3d(-4%, -2%, 0) rotate(0deg)" },
+          to: { transform: "translate3d(4%, 3%, 0) rotate(6deg)" },
+        },
+      },
+      animation: {
+        aurora: "aurora-drift 45s ease-in-out infinite alternate",
       },
     },
   },

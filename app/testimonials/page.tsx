@@ -14,16 +14,19 @@ export const metadata: Metadata = {
 export default function TestimonialsPage() {
   const testimonials = getTestimonials();
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <header className="text-center mb-14 max-w-2xl mx-auto">
-        <p className="section-label justify-center">המלצות</p>
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-forest-900 mb-4 leading-tight">
-          משפחות מספרות
-        </h1>
-        <p className="text-lg text-ink-soft leading-relaxed">
-          מילים של משפחות שבחרו לבנות מערכת — ולא להמשיך לכבות שריפות.
-        </p>
+    <>
+      <header className="scene-night starfield horizon grain relative overflow-hidden">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-16">
+          <p className="eyebrow eyebrow-light">המלצות</p>
+          <h1 className="text-4xl sm:text-6xl text-white mb-5 leading-[1.15]">
+            משפחות מספרות
+          </h1>
+          <p className="text-lg text-white/70 leading-relaxed max-w-xl">
+            מילים של משפחות שבחרו לבנות מערכת — ולא להמשיך לכבות שריפות.
+          </p>
+        </div>
       </header>
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
 
       {testimonials.length > 0 ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -32,12 +35,13 @@ export default function TestimonialsPage() {
           ))}
         </div>
       ) : (
-        <p className="text-center text-ink-soft">המלצות יתווספו בקרוב.</p>
+        <p className="text-center text-mauve">המלצות יתווספו בקרוב.</p>
       )}
 
       <div className="text-center mt-14">
         <WhatsAppCTA href={whatsappLink()} label="רוצים להיות הסיפור הבא? דברו איתנו" />
       </div>
     </div>
+    </>
   );
 }

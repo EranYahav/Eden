@@ -67,23 +67,23 @@ export default async function ServicePage({ params }: PageProps) {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }} />
       )}
 
-      {/* Hero */}
-      <section className="bg-gradient-to-b from-sand to-cream">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-14">
-          <nav className="flex items-center gap-1 text-ink-soft text-sm mb-6">
-            <Link href="/" className="hover:text-sage-700">בית</Link>
-            <ChevronLeft className="w-4 h-4 rtl:rotate-180" />
-            <Link href="/services" className="hover:text-sage-700">שירותים</Link>
-            <ChevronLeft className="w-4 h-4 rtl:rotate-180" />
-            <span className="text-forest-900 font-semibold">{service.title}</span>
+      {/* Hero — night band */}
+      <section className="scene-night starfield horizon grain relative overflow-hidden">
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-14">
+          <nav className="flex items-center gap-1 text-white/60 text-sm mb-8">
+            <Link href="/" className="hover:text-white transition-colors duration-150">בית</Link>
+            <ChevronLeft className="w-4 h-4 rtl:rotate-180" strokeWidth={1.5} />
+            <Link href="/services" className="hover:text-white transition-colors duration-150">שירותים</Link>
+            <ChevronLeft className="w-4 h-4 rtl:rotate-180" strokeWidth={1.5} />
+            <span className="text-white font-semibold">{service.title}</span>
           </nav>
-          <span className="w-16 h-16 rounded-2xl bg-white shadow-soft flex items-center justify-center mb-5">
-            <ServiceIcon name={service.icon} className="w-8 h-8 text-sage-700" />
+          <span className="w-16 h-16 rounded-[10px] border border-white/15 bg-white/[.06] flex items-center justify-center mb-6">
+            <ServiceIcon name={service.icon} className="w-8 h-8 text-ember-300" />
           </span>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-forest-900 mb-4 leading-tight">
+          <h1 className="text-4xl sm:text-5xl text-white mb-5 leading-[1.15]">
             {service.title}
           </h1>
-          <p className="text-lg sm:text-xl text-ink-soft leading-relaxed max-w-2xl">
+          <p className="text-lg sm:text-xl text-white/70 leading-relaxed max-w-2xl">
             {service.tagline}
           </p>
         </div>
@@ -93,11 +93,11 @@ export default async function ServicePage({ params }: PageProps) {
         {/* For whom */}
         {service.forWhom && service.forWhom.length > 0 && (
           <section>
-            <p className="section-label">למי זה מתאים</p>
+            <p className="eyebrow">למי זה מתאים</p>
             <ul className="grid gap-3 sm:grid-cols-2">
               {service.forWhom.map((item) => (
                 <li key={item} className="flex items-start gap-2 text-ink">
-                  <Check className="w-5 h-5 text-sage-600 flex-shrink-0 mt-1" />
+                  <Check className="w-5 h-5 text-ember-600 flex-shrink-0 mt-1" strokeWidth={1.5} />
                   <span>{item}</span>
                 </li>
               ))}
@@ -110,12 +110,12 @@ export default async function ServicePage({ params }: PageProps) {
 
         {/* Outcomes */}
         {service.outcomes && service.outcomes.length > 0 && (
-          <section className="bg-sage-100 rounded-[20px] p-8">
-            <p className="section-label">מה תרוויחו</p>
+          <section className="bg-ember-50 rounded-[18px] p-8">
+            <p className="eyebrow">מה תרוויחו</p>
             <ul className="space-y-3">
               {service.outcomes.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-forest-900 font-semibold">
-                  <Check className="w-5 h-5 text-sage-700 flex-shrink-0 mt-1" />
+                <li key={item} className="flex items-start gap-2 text-ink font-semibold">
+                  <Check className="w-5 h-5 text-ember-600 flex-shrink-0 mt-1" strokeWidth={1.5} />
                   <span>{item}</span>
                 </li>
               ))}
@@ -126,8 +126,8 @@ export default async function ServicePage({ params }: PageProps) {
         {/* FAQ */}
         {service.faqs && service.faqs.length > 0 && (
           <section>
-            <p className="section-label">שאלות נפוצות</p>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-forest-900 mb-6 leading-tight">
+            <p className="eyebrow">שאלות נפוצות</p>
+            <h2 className="text-2xl sm:text-3xl text-ink mb-8 leading-tight">
               כל מה שרציתם לדעת על {service.title}
             </h2>
             <FAQAccordion faqs={service.faqs} />
@@ -135,16 +135,18 @@ export default async function ServicePage({ params }: PageProps) {
         )}
 
         {/* CTA */}
-        <section className="relative overflow-hidden bg-forest-900 rounded-[28px] p-10 sm:p-14 text-center">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3 leading-tight">
-            רוצים לשמוע עוד על {service.title}?
-          </h2>
-          <p className="text-cream/70 mb-8 leading-relaxed max-w-lg mx-auto">
-            שלחו לנו הודעה בוואטסאפ — נחזור אליכם עם כל מה שצריך לדעת, בלי
-            התחייבות.
-          </p>
-          <div className="flex justify-center">
-            <WhatsAppCTA href={wa} label="דברו איתנו בוואטסאפ" service={service.routingKey} />
+        <section className="scene-dusk aurora grain relative overflow-hidden rounded-[24px] p-10 sm:p-14 text-center">
+          <div className="relative z-10">
+            <h2 className="text-2xl sm:text-4xl text-white mb-4 leading-tight">
+              רוצים לשמוע עוד על {service.title}?
+            </h2>
+            <p className="text-white/70 mb-9 leading-relaxed max-w-lg mx-auto">
+              שלחו לנו הודעה בוואטסאפ — נחזור אליכם עם כל מה שצריך לדעת, בלי
+              התחייבות.
+            </p>
+            <div className="flex justify-center">
+              <WhatsAppCTA href={wa} label="דברו איתנו בוואטסאפ" service={service.routingKey} />
+            </div>
           </div>
         </section>
       </div>

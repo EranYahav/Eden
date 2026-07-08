@@ -13,13 +13,21 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#FAF6EF",
+          background: "#1A1122",
+          borderRadius: 14,
         }}
       >
-        <svg viewBox="0 0 40 40" width="52" height="52">
-          <path d="M4 20 Q20 4 36 20 Q28 15 20 20 Q12 15 4 20 Z" fill="#556B5A" />
-          <path d="M20 20 Q28 15 36 20 Q32 17 28 16 Q24 14 20 20 Z" fill="#C67B54" />
-          <rect x="18.5" y="19" width="3" height="15" rx="1.5" fill="#1E3A31" />
+        <svg viewBox="0 0 40 40" width="48" height="48">
+          <path
+            d="M6 21 A14 14 0 0 1 34 21"
+            fill="none"
+            stroke="#E3B978"
+            strokeWidth="3.5"
+            strokeLinecap="round"
+          />
+          <rect x="11" y="25" width="4" height="9" rx="1" fill="#F5A98C" />
+          <rect x="18" y="22" width="4" height="12" rx="1" fill="#F26648" />
+          <rect x="25" y="19" width="4" height="15" rx="1" fill="#FFFFFF" />
         </svg>
       </div>
     ),

@@ -50,12 +50,12 @@ export default function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-2xl bg-sage-100 border border-sage-600/20 p-8 text-center">
-        <CheckCircle2 className="w-12 h-12 text-sage-700 mx-auto mb-3" />
-        <h3 className="text-xl font-extrabold text-forest-900 mb-1">
+      <div className="rounded-[18px] bg-ember-50 border border-ember-100 p-8 text-center">
+        <CheckCircle2 className="w-12 h-12 text-ember-600 mx-auto mb-3" strokeWidth={1.5} />
+        <h3 className="text-xl font-bold text-ink mb-1">
           תודה! קיבלנו את הפנייה
         </h3>
-        <p className="text-ink-soft">נשמח לחזור אליכם בהקדם. 🙂</p>
+        <p className="text-mauve">נשמח לחזור אליכם בהקדם. 🙂</p>
       </div>
     );
   }
@@ -76,7 +76,7 @@ export default function ContactForm() {
       />
 
       <div>
-        <label htmlFor="name" className="block font-semibold text-forest-900 mb-1">
+        <label htmlFor="name" className="block font-semibold text-ink mb-1">
           שם מלא
         </label>
         <input
@@ -84,13 +84,13 @@ export default function ContactForm() {
           name="name"
           type="text"
           required
-          className="w-full rounded-xl border border-sand bg-white px-4 py-3 focus:border-sage-600 outline-none"
+          className="w-full rounded-[10px] border border-line bg-white px-4 py-3 focus:border-ember-500 outline-none transition-colors duration-150"
         />
       </div>
 
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="phone" className="block font-semibold text-forest-900 mb-1">
+          <label htmlFor="phone" className="block font-semibold text-ink mb-1">
             טלפון
           </label>
           <input
@@ -99,17 +99,17 @@ export default function ContactForm() {
             type="tel"
             required
             dir="ltr"
-            className="w-full rounded-xl border border-sand bg-white px-4 py-3 text-right focus:border-sage-600 outline-none"
+            className="w-full rounded-[10px] border border-line bg-white px-4 py-3 text-right focus:border-ember-500 outline-none transition-colors duration-150"
           />
         </div>
         <div>
-          <label htmlFor="topic" className="block font-semibold text-forest-900 mb-1">
+          <label htmlFor="topic" className="block font-semibold text-ink mb-1">
             נושא הפנייה
           </label>
           <select
             id="topic"
             name="topic"
-            className="w-full rounded-xl border border-sand bg-white px-4 py-3 focus:border-sage-600 outline-none"
+            className="w-full rounded-[10px] border border-line bg-white px-4 py-3 focus:border-ember-500 outline-none transition-colors duration-150"
           >
             <option>ייעוץ זוגי</option>
             <option>הדרכת הורים</option>
@@ -121,18 +121,18 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="message" className="block font-semibold text-forest-900 mb-1">
+        <label htmlFor="message" className="block font-semibold text-ink mb-1">
           מה תרצו לספר לנו?
         </label>
         <textarea
           id="message"
           name="message"
           rows={4}
-          className="w-full rounded-xl border border-sand bg-white px-4 py-3 focus:border-sage-600 outline-none resize-none"
+          className="w-full rounded-[10px] border border-line bg-white px-4 py-3 focus:border-ember-500 outline-none resize-none transition-colors duration-150"
         />
       </div>
 
-      <label className="flex items-start gap-2 text-sm text-ink-soft">
+      <label className="flex items-start gap-2 text-sm text-mauve">
         <input type="checkbox" name="consent" required className="mt-1" />
         <span>
           אני מאשר/ת שתחזרו אליי בנוגע לפנייה. הפרטים לא יועברו לצד שלישי.
@@ -140,7 +140,7 @@ export default function ContactForm() {
       </label>
 
       {status === "error" && (
-        <p className="text-terracotta-500 font-semibold" role="alert">
+        <p className="text-red-600 font-semibold" role="alert">
           {error}
         </p>
       )}

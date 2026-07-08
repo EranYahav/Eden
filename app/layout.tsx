@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Assistant } from "next/font/google";
+import { Heebo, Suez_One } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -8,10 +8,19 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { SITE } from "@/lib/site";
 import { organizationLd } from "@/lib/seo";
 
-const assistant = Assistant({
+const heebo = Heebo({
   subsets: ["hebrew", "latin"],
-  variable: "--font-assistant",
+  variable: "--font-heebo",
   display: "swap",
+  weight: ["300", "400", "500", "600", "700", "800"],
+});
+
+// Slab display face — poster-weight Hebrew headlines, single 400 weight.
+const suez = Suez_One({
+  subsets: ["hebrew", "latin"],
+  variable: "--font-suez",
+  display: "swap",
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -39,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="he" dir="rtl" className={assistant.variable}>
+    <html lang="he" dir="rtl" className={`${heebo.variable} ${suez.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -54,10 +63,10 @@ export default function RootLayout({
           />
         ) : null}
       </head>
-      <body className="font-assistant bg-cream text-ink flex flex-col min-h-screen antialiased">
+      <body className="font-sans bg-parchment text-ink flex flex-col min-h-screen antialiased">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:right-2 focus:z-[100] focus:bg-sage-600 focus:text-white focus:px-4 focus:py-2 focus:rounded-xl focus:font-bold focus:shadow-lift"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:right-2 focus:z-[100] focus:bg-ember-600 focus:text-white focus:px-4 focus:py-2 focus:rounded-[10px] focus:font-bold"
         >
           דלג לתוכן הראשי
         </a>

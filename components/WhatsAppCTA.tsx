@@ -24,7 +24,7 @@ export default function WhatsAppCTA({
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => track("whatsapp_click", { service: service ?? "general" })}
-      className={`${variant === "primary" ? "btn-primary" : "btn-ghost"} plausible-event-name=whatsapp_click ${className}`}
+      className={`${variant === "primary" ? "btn-primary" : "btn-outline"} plausible-event-name=whatsapp_click ${className}`}
     >
       <MessageCircle className="w-5 h-5" aria-hidden="true" />
       {label}

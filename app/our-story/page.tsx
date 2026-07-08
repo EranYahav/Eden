@@ -28,12 +28,16 @@ export default async function OurStoryPage() {
     : { content: null };
 
   return (
-    <div className="bg-gradient-to-b from-sand to-cream">
-      <article className="max-w-prose mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <p className="section-label">הסיפור שלנו</p>
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-forest-900 mb-8 leading-tight">
-          כל המשפחה. תחת מטריה אחת.
-        </h1>
+    <div>
+      <header className="scene-night starfield horizon grain relative overflow-hidden">
+        <div className="relative z-10 max-w-prose mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-16">
+          <p className="eyebrow eyebrow-light">הסיפור שלנו</p>
+          <h1 className="text-4xl sm:text-6xl text-white leading-[1.15]">
+            כל המשפחה. תחת מטריה אחת.
+          </h1>
+        </div>
+      </header>
+      <article className="max-w-prose mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
         <div className="prose-rtl">{content}</div>
         <div className="mt-12">
           <WhatsAppCTA href={whatsappLink()} label="דברו איתנו בוואטסאפ" />
